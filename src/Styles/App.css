@@ -1,0 +1,607 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+html {
+  overflow: overlay;
+  scroll-behavior: smooth;
+}
+
+.login-container {
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.Dashboard {
+  width: 100vw;
+  height: 100%;
+  opacity: 0;
+  min-height: 720px;
+}
+.active-transition {
+  opacity: 1;
+  transition: opacity 9s ease-in-out;
+}
+.day-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(117, 119, 119);
+  position: relative;
+  font-size: 1rem;
+  font-weight: 100;
+  border: 1px solid rgb(230, 233, 239);
+}
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+.login-background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  z-index: -99;
+}
+.register-redirect-scroll {
+  display: inline-block;
+}
+.register-redirect-scroll:hover {
+  color: #005dfd;
+  transition: 0.5s ease-in-out color;
+}
+.login-notifications {
+  color: red;
+  text-align: center;
+}
+.logo-container {
+  position: absolute;
+  top: 1rem;
+  font-size: 1.5rem;
+  left: 0;
+  display: block;
+  text-align: center;
+  font-family: "Kaushan Script", cursive;
+  align-items: center;
+  color: #122775cf;
+  user-select: none;
+}
+.login-logo {
+  padding: 2.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: left;
+  font-family: "Kaushan Script", cursive;
+}
+.login-redirect-scroll {
+  display: inline;
+}
+.login-redirect-scroll:hover {
+  color: #005dfd;
+  transition: color 0.5s linear;
+}
+.LoginLogo img {
+  width: 100px;
+}
+.login-form {
+  width: 100%;
+  max-width: 300px;
+}
+.scroll-container {
+  scroll-behavior: smooth;
+  position: relative;
+  overflow-y: hidden;
+  border-left: 1px solid lightgray;
+  height: 100%;
+  width: 40%;
+}
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+.logo-icon {
+  width: 3.25rem;
+  margin-left: 5px;
+}
+.button {
+  margin-bottom: 10px;
+}
+#running {
+  transition: opacity 1s ease-in;
+  opacity: 1;
+}
+.register-redirect a {
+  text-decoration: none;
+  color: gray;
+}
+
+#hidden {
+  transition: opacity 2s ease-out;
+  opacity: 0;
+}
+.register-panel-container {
+  overflow: hidden;
+  padding: 1rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.register-panel {
+  width: 100%;
+  max-width: 300px;
+}
+.register-panel h3 {
+  font-weight: 400;
+}
+.calendar-container {
+  text-align: center;
+  display: grid;
+  width: calc(100% + 1px);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 100%;
+  padding-top: 15px;
+}
+.day-container:nth-child(7n) {
+  border-right: none;
+}
+.day-container:nth-child(7n + 1) {
+  border-left: none;
+}
+.day-container:nth-child(n + 36) {
+  border-bottom: none;
+}
+.day-container:nth-child(-n + 7) {
+  border-top: 2px solid rgb(230, 233, 239);
+}
+.calendarPanel-container {
+  background: white;
+  user-select: none;
+  width: 100%;
+  height: calc(100% - 3.65rem);
+  display: flex;
+  border-radius: 12px;
+  flex-direction: column;
+  box-shadow: rgb(194, 194, 194) 1px 1px 20px;
+}
+.dashboard-menu li {
+  margin: 12.5px 0 12.5px 0;
+}
+ul {
+  padding: 0;
+}
+.DashboardMenu {
+  background-color: #005efd;
+  width: 6rem;
+  padding: 0.75rem;
+  box-shadow: 1px 1px 0.5rem #005efd;
+}
+.dashboard-background {
+  transition: background-color 1s linear;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  z-index: -99;
+}
+.dashboard-content-container {
+  display: flex;
+  height: 100%;
+  height: 100%;
+}
+.profile-picture-container p {
+  margin-top: 10px;
+}
+.menu-navigation li {
+  list-style: none;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  padding: 1.2rem;
+}
+.menu-navigation li:hover {
+  border-radius: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.75s;
+  box-shadow: rgb(17, 17, 90) 1px 1px 15px;
+}
+.menu-navigation li:not(hover) {
+  border-radius: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.5s;
+  box-shadow: none;
+}
+.dayNames-container {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  font-weight: 400;
+  color: rgb(117, 119, 119);
+}
+.dashboard-rightside {
+  width: calc(100% - 6rem);
+  padding: 20px;
+}
+.choosed-section {
+  display: flex;
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  color: rgb(117, 119, 119);
+}
+.register-redirect {
+  font-weight: 500;
+}
+.form-label h3 {
+  font-weight: 400;
+}
+.home h2 {
+  font-weight: 400;
+}
+.choosed-section img {
+  margin-left: 10px;
+}
+.dateSetter-container h4 {
+  font-weight: 400;
+  color: rgb(117, 119, 119);
+  text-align: right;
+  padding: 17.5px;
+  display: flex;
+  justify-content: space-between;
+}
+.day-bg-filter-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 25px 50px 25px 50px;
+}
+.day-bg-filter {
+  width: 100%;
+  height: 100%;
+}
+.arrow-button-img {
+  width: 10px;
+  height: 12.5px;
+  filter: brightness(0) invert(1);
+}
+.reverted {
+  transform: rotate(180deg);
+}
+.btn-container .btn {
+  padding: 3px 9px;
+  margin-right: 7.5px;
+  box-shadow: #005efd 1px 1px 5px;
+}
+.dashboard-menu-icons {
+  width: 100%;
+  height: 2rem;
+  fill: #122775cf;
+  filter: drop-shadow(1px 1px 15px rgb(135, 135, 161));
+}
+.firebaseui-list-item {
+  padding: 0;
+  margin-bottom: 0;
+}
+.firebaseui-list-item li {
+  margin-bottom: 0;
+}
+.firebaseui-idp-button {
+  width: 100% !important;
+  border-radius: 5px !important;
+  max-width: none !important;
+  padding: 0.75rem 1rem !important;
+  min-height: 30px !important;
+}
+.firebaseui-idp-text {
+  font-weight: 100;
+  font-size: 0.95rem !important;
+}
+.firebaseui-card-content {
+  padding: 0 !important;
+}
+.firebaseui-idp-list {
+  margin-bottom: 0 !important;
+}
+.firebaseui-list-item:last-child {
+  margin-bottom: 0 !important;
+  font-weight: 100 !important;
+}
+.menu-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.day-bg-container {
+  width: 100%;
+  height: 100%;
+  padding: 0.66rem;
+}
+.day-bg {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.day-bg p {
+  margin: 0;
+}
+.info-trigger {
+  top: 0%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.register-panel p {
+  text-align: center;
+}
+.message {
+  color: rgb(230, 68, 68);
+}
+.info-message {
+  top: -75%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #005dfde0;
+  border-radius: 4px;
+}
+.info-message::after {
+  font-weight: 500;
+  color: #122775cf;
+  content: "";
+}
+#menu {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.App {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+.home-package {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.register-panel p a {
+  font-weight: 500;
+  color: grey;
+  text-decoration: none;
+}
+.register-panel p a:hover {
+  transition: color 0.25s ease-in-out;
+  color: #005dfd;
+}
+.home-container {
+  position: relative;
+  color: rgb(134, 134, 134);
+  padding: 1.75rem !important;
+  background: rgba(255, 255, 255, 0.466);
+  border-radius: 7px;
+  box-shadow: lightgray 1px 1px 8px;
+}
+.home {
+  position: relative;
+  width: 60%;
+  padding: 1rem;
+}
+.socials-container {
+  width: calc(100% - 2rem);
+  font-size: 0.9rem;
+  padding: 3rem 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.socials li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 12px;
+}
+.socials li:first-child {
+  margin-left: 0 !important;
+}
+.socials li svg:first-of-type {
+  margin-left: 0 !important;
+}
+.socials li svg {
+  position: relative;
+  width: 1.66rem;
+  height: 1.66rem;
+  fill: #a3a3a3b4;
+}
+.socials li svg:hover {
+  transition: fill ease-in 0.25s;
+  fill: #005dfd;
+}
+.home-content-container {
+  margin-top: 1rem;
+}
+.login-form footer {
+  text-align: center;
+  margin-top: 1rem;
+}
+.radio-group {
+  display: flex;
+  justify-content: space-evenly;
+}
+.register-redirect:hover {
+  cursor: pointer;
+}
+.mobile-menu {
+  visibility: hidden;
+  position: fixed;
+}
+@keyframes panel-change {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+/*
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+/////////////////////////// MEDIA /////////////////////////////
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+*/
+@media only screen and (max-width: 1699px) {
+  html {
+    font-size: 92.5%;
+  }
+}
+
+@media only screen and (max-width: 1439px) {
+  html {
+    font-size: 82.5%;
+  }
+}
+@media only screen and (max-width: 1139px) {
+  html {
+    font-size: 74.5%;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  html {
+    font-size: 100%;
+  }
+  .mobile-menu {
+    padding: 1.25rem;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    position: fixed;
+    visibility: visible;
+  }
+  .menu-overlay ul {
+    list-style: none;
+  }
+  .menu-overlay ul li {
+    font-size: 22px;
+    margin: 1rem 2rem;
+    text-align: center;
+  }
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.904);
+  }
+  .scroll-container {
+    width: 100%;
+    border-left: none;
+  }
+  .dateSetter-container h4 {
+    padding: 0.75rem;
+  }
+  .task-mobile-container {
+    visibility: visible;
+    background-color: white;
+    height: calc(35% - 4rem - 7px);
+    border-radius: 7px;
+    width: 100%;
+    box-shadow: rgb(204, 204, 204) 1px 1px 8px;
+  }
+  .calendarPanel-container {
+    height: 65%;
+    margin-bottom: 7px;
+  }
+  .home-package {
+    flex-direction: column;
+  }
+  .login-container {
+    border-left: none;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .DashboardMenu {
+    display: none;
+  }
+  .dashboard-rightside {
+    width: 100%;
+    padding: 5px;
+  }
+  .day-bg-filter-container {
+    padding: 0;
+  }
+  .choosed-section {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0.75rem;
+    text-align: center;
+    display: block;
+  }
+  .Dashboard {
+    height: 100vh;
+    min-height: unset;
+  }
+  .day-container {
+    border: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .day-bg-container {
+    padding: 0;
+  }
+  .socials-container {
+    top: 3rem;
+    position: relative;
+    width: calc(100% - 2rem);
+  }
+  .day-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dateSetter-container h3 {
+    padding: 12px;
+  }
+  .App {
+    height: unset;
+    flex-direction: column;
+  }
+  .login-logo {
+    padding: 1rem;
+    position: initial;
+  }
+  .home-container {
+    padding: 1rem !important;
+  }
+  .home {
+    height: calc(100vh - 7rem);
+    min-height: 650px;
+    width: 100%;
+    border-bottom: 1px solid rgb(189, 188, 188);
+  }
+}
