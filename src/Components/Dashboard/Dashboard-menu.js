@@ -18,7 +18,6 @@ function DashboardMenu(props) {
   return (
     <div className="DashboardMenu">
       <div className="menu-container">
-        <MenuHeader />
         <nav className="menu-navigation">
           <div>
             <DashboardIcons
@@ -47,6 +46,7 @@ function DashboardMenu(props) {
           <p></p>
         </nav>
       </div>
+
       <div className="notifications"></div>
     </div>
   );

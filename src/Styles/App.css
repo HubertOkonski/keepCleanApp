@@ -176,10 +176,10 @@ ul {
   padding: 0;
 }
 .DashboardMenu {
-  background-color: #005efd;
-  width: 6rem;
+  margin-left: 1.25rem;
+  width: 9rem;
   padding: 0.75rem;
-  box-shadow: 1px 1px 0.5rem #005efd;
+  background: repeating-linear-gradient(45deg, #c8ccfb, #ffffff00 50%);
 }
 .dashboard-background {
   transition: background-color 1s linear;
@@ -203,14 +203,17 @@ ul {
   margin-bottom: 10%;
   padding: 1.2rem;
 }
+.menu-navigation div {
+  padding: 0.75rem;
+}
 .menu-navigation li:hover {
-  border-radius: 15px;
+  border-radius: 7px;
   cursor: pointer;
   transition: box-shadow 0.75s;
-  box-shadow: rgb(17, 17, 90) 1px 1px 15px;
+  box-shadow: rgb(178, 178, 233) 1px 1px 15px;
 }
 .menu-navigation li:not(hover) {
-  border-radius: 15px;
+  border-radius: 7px;
   cursor: pointer;
   transition: box-shadow 0.5s;
   box-shadow: none;
@@ -219,12 +222,12 @@ ul {
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  font-weight: 400;
+  font-weight: 500;
   color: rgb(117, 119, 119);
 }
 .dashboard-rightside {
   width: calc(100% - 6rem);
-  padding: 20px;
+  padding: 2rem;
 }
 .choosed-section {
   display: flex;
@@ -272,12 +275,23 @@ ul {
   transform: rotate(180deg);
 }
 .btn-container .btn {
+  background-color: #5e8bd8;
   padding: 3px 9px;
   margin-right: 7.5px;
-  box-shadow: #005efd 1px 1px 5px;
+  box-shadow: #cad5ea 1px 1px 5px !important;
+}
+.btn-primary {
+  border-color: none;
+}
+.menu ul li {
+  list-style: none;
+}
+.day-info {
+  width: 100%;
+  height: 100%;
 }
 .dashboard-menu-icons {
-  width: 100%;
+  width: 2rem;
   height: 2rem;
   fill: #122775cf;
   filter: drop-shadow(1px 1px 15px rgb(135, 135, 161));
@@ -313,7 +327,10 @@ ul {
 .menu-container {
   height: 100%;
   display: flex;
+  background: linear-gradient(45deg, #ffffffb0, transparent);
+  border-radius: 7px;
   align-items: center;
+  justify-content: center;
   position: relative;
 }
 .day-bg-container {
@@ -331,6 +348,9 @@ ul {
 }
 
 .day-bg p {
+  text-align: left;
+  font-weight: 400;
+  padding: 0.35rem;
   margin: 0;
 }
 .info-trigger {

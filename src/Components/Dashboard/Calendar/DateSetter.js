@@ -13,22 +13,30 @@ function DateSetter(props) {
     props.setDate(obj);
   };
   const buttonDisabled = () => {
-    if(props.date.monthNumber==0 || props.date.monthNumber==11)
-    return true
-  }
+    if (props.date.monthNumber == 0 || props.date.monthNumber == 11)
+      return true;
+  };
   return (
     <div className="dateSetter-container">
       <h4>
         <div className="btn-container">
-          <Button className="backward" onClick={()=>handleClick(-1)} disabled={props.date.monthNumber==0?buttonDisabled():null}>
-            <img src={Arrow} alt="" className="arrow-button-img" / >
-          </Button>
-          <Button className="forward" onClick={()=> handleClick(1)} disabled={props.date.monthNumber==11?buttonDisabled():null}>
+          <button
+            className="backward btn"
+            onClick={() => handleClick(-1)}
+            disabled={props.date.monthNumber == 0 ? buttonDisabled() : null}
+          >
+            <img src={Arrow} alt="" className="arrow-button-img" />
+          </button>
+          <button
+            className="forward btn"
+            onClick={() => handleClick(1)}
+            disabled={props.date.monthNumber == 11 ? buttonDisabled() : null}
+          >
             <img src={Arrow} alt="" className="arrow-button-img reverted" />
-          </Button>
+          </button>
           <span>month</span>
         </div>
-  <span>{props.date.monthName}</span>
+        <span>{props.date.monthName}</span>
         <span>2020</span>
       </h4>
     </div>
