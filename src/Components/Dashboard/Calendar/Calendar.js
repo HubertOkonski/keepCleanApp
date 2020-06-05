@@ -4,7 +4,12 @@ import MonthNames from "./MonthNames";
 
 function Calendar(props) {
   const { year, monthNumber, firstDayNumber } = props.date;
-  const [taskInfo, setTaskInfo] = useState("");
+  const [taskInfo, setTaskInfo] = useState({
+    name: "",
+    task: "",
+    dayNumber: "",
+    monthNumber: "",
+  });
   const [menuReset, setMenuReset] = useState(true);
   const getDaysInMonth = function (month, year) {
     return new Date(year, month, 0).getDate();
@@ -118,10 +123,11 @@ function Calendar(props) {
             menuReset={menuReset}
             setMenuReset={setMenuReset}
             setTaskInfo={setTaskInfo}
+            taskInfo={taskInfo}
           />
         ))}
       </div>
-      <div className="task-info-viewer">{taskInfo}</div>
+      <div className="task-info-viewer">{taskInfo.name}</div>
     </div>
   );
 }

@@ -2,20 +2,17 @@ import React, { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import { isMobile } from "react-device-detect";
 function Day(props) {
-  const [show, setDisplay] = useState(false);
   const [menuSettings, setMenuSettings] = useState({
     visibility: "hidden",
     x: 0,
     y: 0,
   });
-  function toggleInfoDisplay() {
-    return !show;
-  }
-  const hoverMouseHandler = () => {
-    setDisplay(toggleInfoDisplay);
-  };
   const menuHandler = (e) => {
-    if (isMobile) props.setTaskInfo(`Kto: ${props.task}`);
+    if (isMobile)
+      props.setTaskInfo({
+        name: props.task,
+        dayNumber: props.dayNumber,
+      });
     if (e.nativeEvent.which === 3) {
       e.preventDefault();
       props.setMenuReset(!props.menuReset);
@@ -72,6 +69,13 @@ function Day(props) {
                 className="info-trigger"
                 onClick={(e) => menuHandler(e)}
                 onContextMenu={(e) => menuHandler(e)}
+                style={
+                  props.taskInfo.dayNumber === props.dayNumber && isMobile
+                    ? {
+                        border: "1px solid #cccccc",
+                      }
+                    : {}
+                }
               ></div>
             </OutsideClickHandler>
           ) : (
