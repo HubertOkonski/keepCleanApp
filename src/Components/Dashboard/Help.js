@@ -17,8 +17,8 @@ function Help(props) {
         <Modal.Body>
           <p>
             {" "}
-            App was created to show programming skills and help me help to keep
-            house clean during Covid-19 pandemic.
+            App was created to show programming skills and help to keep house
+            clean during Covid-19 pandemic.
           </p>
           <p>
             As a guest you can only see calendar but You can't modife it, only

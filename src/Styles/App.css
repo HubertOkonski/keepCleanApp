@@ -139,13 +139,24 @@ html {
 .register-panel h3 {
   font-weight: 400;
 }
-.calendar-container {
+.menu ul {
+  margin: 0;
+  padding: 0.75rem 5rem;
+}
+.menu li {
+  padding: 0.15rem;
+}
+.calendar {
   text-align: center;
   display: grid;
   width: calc(100% + 1px);
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 70%;
+  margin-bottom: 5px;
+}
+.calendar-container {
   height: 100%;
-  padding-top: 15px;
+  padding-top: 0.5rem;
 }
 .day-container:nth-child(7n) {
   border-right: none;
@@ -165,9 +176,9 @@ html {
   width: 100%;
   height: calc(100% - 3.65rem);
   display: flex;
-  border-radius: 12px;
+  border-radius: 7px;
   flex-direction: column;
-  box-shadow: rgb(194, 194, 194) 1px 1px 20px;
+  box-shadow: rgb(194, 194, 194) 0px 0px 20px;
 }
 .dashboard-menu li {
   margin: 12.5px 0 12.5px 0;
@@ -196,6 +207,13 @@ ul {
 }
 .profile-picture-container p {
   margin-top: 10px;
+}
+.menu {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 99;
+  border-radius: 7px;
+  border: 1px solid #d8d8d8;
 }
 .menu-navigation li {
   list-style: none;
@@ -285,6 +303,12 @@ ul {
 }
 .menu ul li {
   list-style: none;
+}
+.menu ul li:hover {
+  list-style: none;
+  transition: color 0.5s ease-in-out;
+  cursor: pointer;
+  color: #005dfd;
 }
 .day-info {
   width: 100%;
@@ -474,6 +498,7 @@ ul {
     transform: translateY(100vh);
   }
 }
+
 /*
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
@@ -482,6 +507,11 @@ ul {
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
 */
+@media only screen and (min-width: 2000px) {
+  html {
+    font-size: 105%;
+  }
+}
 @media only screen and (max-width: 1699px) {
   html {
     font-size: 92.5%;
@@ -503,6 +533,20 @@ ul {
   html {
     font-size: 100%;
   }
+  .task-info-viewer {
+    height: calc(30% - 12px);
+    border-top: 1px solid rgba(175, 175, 175, 0.644);
+  }
+  .day-info {
+    width: unset;
+    height: unset;
+  }
+  .calendar-container {
+    padding-top: 5px;
+  }
+  .desktop-name-viewer {
+    display: none;
+  }
   .mobile-menu {
     padding: 1.25rem;
     top: 0;
@@ -517,6 +561,9 @@ ul {
   .menu-overlay ul li {
     font-size: 22px;
     margin: 1rem 2rem;
+    text-align: center;
+  }
+  .day-bg p {
     text-align: center;
   }
   .menu-overlay {
@@ -536,18 +583,18 @@ ul {
     border-left: none;
   }
   .dateSetter-container h4 {
-    padding: 0.75rem;
+    padding: 0.5rem;
   }
   .task-mobile-container {
     visibility: visible;
     background-color: white;
     height: calc(35% - 4rem - 7px);
-    border-radius: 7px;
+    border-top: 1px solid #e4e4e4;
     width: 100%;
-    box-shadow: rgb(204, 204, 204) 1px 1px 8px;
   }
   .calendarPanel-container {
-    height: 65%;
+    box-shadow: none;
+    height: calc(100% - 4rem);
     margin-bottom: 7px;
   }
   .home-package {
@@ -585,6 +632,7 @@ ul {
   .day-container {
     border: none !important;
     display: flex;
+    margin: 2px;
     align-items: center;
     justify-content: center;
   }
@@ -616,6 +664,8 @@ ul {
     position: initial;
   }
   .home-container {
+    background: none;
+    box-shadow: none;
     padding: 1rem !important;
   }
   .home {

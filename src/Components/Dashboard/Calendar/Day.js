@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
+import { isMobile } from "react-device-detect";
 function Day(props) {
   const [show, setDisplay] = useState(false);
   const [menuSettings, setMenuSettings] = useState({
@@ -14,9 +15,8 @@ function Day(props) {
     setDisplay(toggleInfoDisplay);
   };
   const menuHandler = (e) => {
-    if (e.nativeEvent.which === 1) {
-      console.log("Left click");
-    } else if (e.nativeEvent.which === 3) {
+    if (isMobile) props.setTaskInfo(`Kto: ${props.task}`);
+    if (e.nativeEvent.which === 3) {
       e.preventDefault();
       props.setMenuReset(!props.menuReset);
       setMenuSettings({
@@ -45,10 +45,6 @@ function Day(props) {
             <div
               className="menu"
               style={{
-                position: "fixed",
-                background: "white",
-                width: "200px",
-                zIndex: "99",
                 top: menuSettings.y,
                 left: menuSettings.x,
                 visibility: menuSettings.visibility,
@@ -64,20 +60,20 @@ function Day(props) {
             ""
           )}
 
-          {props.task != " " ? (
-            <div
-              className="info-trigger"
-              onClick={(e) => menuHandler(e)}
-              onContextMenu={(e) => menuHandler(e)}
+          {props.status ? (
+            <OutsideClickHandler
+              onOutsideClick={() => {
+                setMenuSettings({
+                  visibility: "hidden",
+                });
+              }}
             >
-              <OutsideClickHandler
-                onOutsideClick={() => {
-                  setMenuSettings({
-                    visibility: "hidden",
-                  });
-                }}
-              ></OutsideClickHandler>
-            </div>
+              <div
+                className="info-trigger"
+                onClick={(e) => menuHandler(e)}
+                onContextMenu={(e) => menuHandler(e)}
+              ></div>
+            </OutsideClickHandler>
           ) : (
             ""
           )}
@@ -98,7 +94,7 @@ function Day(props) {
                 {props.dayNumber}
               </strong>
             </p>
-            <div>{props.task}</div>
+            <div className="desktop-name-viewer">{props.task}</div>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@ function DateSetter(props) {
     props.setDate(obj);
   };
   const buttonDisabled = () => {
-    if (props.date.monthNumber == 0 || props.date.monthNumber == 11)
+    if (props.date.monthNumber === 0 || props.date.monthNumber === 11)
       return true;
   };
   return (
@@ -23,14 +23,14 @@ function DateSetter(props) {
           <button
             className="backward btn"
             onClick={() => handleClick(-1)}
-            disabled={props.date.monthNumber == 0 ? buttonDisabled() : null}
+            disabled={props.date.monthNumber === 0 ? buttonDisabled() : null}
           >
-            <img src={Arrow} alt="" className="arrow-button-img" />
+            {<img src={Arrow} alt="" className="arrow-button-img" />}
           </button>
           <button
             className="forward btn"
             onClick={() => handleClick(1)}
-            disabled={props.date.monthNumber == 11 ? buttonDisabled() : null}
+            disabled={props.date.monthNumber === 11 ? buttonDisabled() : null}
           >
             <img src={Arrow} alt="" className="arrow-button-img reverted" />
           </button>

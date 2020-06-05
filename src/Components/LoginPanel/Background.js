@@ -53,7 +53,6 @@ function Background(props) {
           }
         `}
         </css-doodle>
-        */
       </div>
     </>
   );

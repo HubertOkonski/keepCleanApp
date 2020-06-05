@@ -15,6 +15,7 @@
     "react-bootstrap": "^1.0.0",
     "react-context-menu": "^3.0.2",
     "react-contextmenu": "^2.13.0",
+    "react-device-detect": "^1.12.1",
     "react-dom": "^16.13.1",
     "react-firebaseui": "^4.1.0",
     "react-hamburger-menu": "^1.2.1",

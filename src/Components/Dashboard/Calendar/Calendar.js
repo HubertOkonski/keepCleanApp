@@ -4,6 +4,7 @@ import MonthNames from "./MonthNames";
 
 function Calendar(props) {
   const { year, monthNumber, firstDayNumber } = props.date;
+  const [taskInfo, setTaskInfo] = useState("");
   const [menuReset, setMenuReset] = useState(true);
   const getDaysInMonth = function (month, year) {
     return new Date(year, month, 0).getDate();
@@ -105,8 +106,8 @@ function Calendar(props) {
     return calendarViewArray;
   };
   return (
-    <>
-      <div className="calendar-container">
+    <div className="calendar-container">
+      <div className="calendar">
         {updateView().map((day) => (
           <Day
             dayNumber={day.dayNumber}
@@ -116,10 +117,12 @@ function Calendar(props) {
             today={day.today}
             menuReset={menuReset}
             setMenuReset={setMenuReset}
+            setTaskInfo={setTaskInfo}
           />
         ))}
       </div>
-    </>
+      <div className="task-info-viewer">{taskInfo}</div>
+    </div>
   );
 }
 export default Calendar;

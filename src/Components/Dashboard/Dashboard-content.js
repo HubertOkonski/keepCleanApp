@@ -36,7 +36,6 @@ function DashboardContent(props) {
         <CalendarHeader />
         <Calendar date={date} />
       </div>
-      <div className="task-mobile-container"></div>
     </div>
   );
 }
