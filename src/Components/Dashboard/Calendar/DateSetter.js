@@ -1,7 +1,5 @@
 import React from "react";
-import arrow from "../../../Icons/arrow.svg";
 import MonthNames from "./MonthNames";
-import { Button } from "react-bootstrap";
 import Arrow from "./../../../Icons/arrow.svg";
 function DateSetter(props) {
   const handleClick = (number) => {

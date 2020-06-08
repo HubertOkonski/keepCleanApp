@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Day from "./Day";
 import MonthNames from "./MonthNames";
-
+import { Button } from "react-bootstrap";
 function Calendar(props) {
   const { year, monthNumber, firstDayNumber } = props.date;
   const [taskInfo, setTaskInfo] = useState({
@@ -29,6 +29,7 @@ function Calendar(props) {
         status: "",
         done: "",
         today: todayStatus,
+        timestamp: new Date(props.date.year, monthNumber - 1, i).getTime(),
       };
       daysArray.push(day);
     }
@@ -49,8 +50,8 @@ function Calendar(props) {
   };
 
   const [CalendarData, setCalendarData] = useState(fillDataArray());
+
   const fillCalendarWithData = (dataArray) => {
-    console.log(CalendarData);
     const copyOfCalendarData = [...CalendarData];
     dataArray.dates.forEach((task) => {
       copyOfCalendarData[task.month - 1].days[task.day - 1] = {
@@ -58,10 +59,12 @@ function Calendar(props) {
         done: task.done,
         status: task.status,
         task: task.name,
+        today: copyOfCalendarData[task.month - 1].days[task.day - 1].today,
+        timestamp:
+          copyOfCalendarData[task.month - 1].days[task.day - 1].timestamp,
       };
     });
     setCalendarData(copyOfCalendarData);
-    console.log(CalendarData);
   };
   const failUserFetch = () => {
     console.log("fetch failed");
@@ -120,6 +123,7 @@ function Calendar(props) {
             done={day.done}
             task={day.task}
             today={day.today}
+            timestamp={day.timestamp}
             menuReset={menuReset}
             setMenuReset={setMenuReset}
             setTaskInfo={setTaskInfo}
@@ -127,7 +131,43 @@ function Calendar(props) {
           />
         ))}
       </div>
-      <div className="task-info-viewer">{taskInfo.name}</div>
+      <div className="task-info-viewer-container">
+        {taskInfo.name !== "" ? (
+          <div className="task-info-viewer">
+            <div className="task-info">
+              <center>
+                <p>Who: {taskInfo.name}</p>
+                <p>
+                  Status:
+                  {taskInfo.status ? (
+                    <span
+                      style={{
+                        color: "green",
+                      }}
+                    >
+                      {" "}
+                      Done{" "}
+                    </span>
+                  ) : (
+                    <span style={{ color: "red" }}> Not Done </span>
+                  )}{" "}
+                </p>
+              </center>
+            </div>
+
+            <div className="task-info-buttons">
+              <Button variant="primary" disabled={!taskInfo.editAvailability}>
+                Cancel
+              </Button>
+              <Button variant="primary" disabled={!taskInfo.editAvailability}>
+                Postpone
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
     </div>
   );
 }

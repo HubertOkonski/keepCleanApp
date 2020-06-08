@@ -7,11 +7,16 @@ function Day(props) {
     x: 0,
     y: 0,
   });
+  const editAvailability = () => {
+    const todayTimestamp = Date.now();
+    return props.timestamp > todayTimestamp;
+  };
   const menuHandler = (e) => {
     if (isMobile)
       props.setTaskInfo({
         name: props.task,
         dayNumber: props.dayNumber,
+        editAvailability: editAvailability(),
       });
     if (e.nativeEvent.which === 3) {
       e.preventDefault();
