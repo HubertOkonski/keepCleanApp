@@ -38,7 +38,7 @@ function Day(props) {
             props.status
               ? {
                   background:
-                    "repeating-linear-gradient(45deg, #e3e6f59e, #00000000 12.5%)",
+                    "-webkit-repeating-linear-gradient(45deg, #e3e6f59e, #00000000 12.5%)",
                 }
               : {}
           }
