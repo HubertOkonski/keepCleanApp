@@ -70,7 +70,7 @@ function Calendar(props) {
     console.log("fetch failed");
   };
   useEffect(() => {
-    fetch("http://us-central1-keepclean-f285d.cloudfunctions.net/days")
+    fetch("https://us-central1-keepclean-f285d.cloudfunctions.net/days")
       .then((res) => res.json())
       .then(
         (result) => fillCalendarWithData(result),
