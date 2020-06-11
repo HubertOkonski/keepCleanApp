@@ -246,6 +246,8 @@ ul {
 .dashboard-rightside {
   width: calc(100% - 6rem);
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 .choosed-section {
   display: flex;
@@ -489,7 +491,7 @@ ul {
 }
 .mobile-menu {
   visibility: hidden;
-  position: fixed;
+  position: absolute;
 }
 @keyframes panel-change {
   from {
@@ -499,7 +501,83 @@ ul {
     transform: translateY(100vh);
   }
 }
-
+.settings-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  box-shadow: rgb(194, 194, 194) 0px 0px 20px;
+}
+.settings {
+  height: 100%;
+}
+.settings-form {
+  height: 100%;
+  padding: 3rem 0rem;
+  text-align: center;
+  font-weight: 400;
+  color: #858585;
+  display: flex;
+}
+.setting {
+  margin: 0.75rem 0px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.setting label {
+  margin: 0 7px;
+}
+.account-settings {
+  width: 25%;
+  min-width: 250px;
+  border-left: 1px solid #dadada;
+}
+.filter-settings {
+  flex-direction: column;
+  display: flex;
+  width: 25%;
+  min-width: 250px;
+  border-left: 1px solid #dadada;
+  align-items: center;
+  position: relative;
+}
+.settings-form h4 {
+  font-weight: 300;
+}
+.account-settings .form-group {
+  width: 80%;
+  min-width: 200px;
+  margin: auto;
+}
+.settings-form > * {
+  padding-top: 10vh;
+}
+.form-settings input,
+button {
+  margin: 7.5px 0px;
+}
+.email-change input:nth-child(2) {
+  margin-bottom: 0;
+}
+.button-settings-save {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.form-settings {
+  padding: 1.25rem;
+}
+.filter-settings button {
+  margin-right: 1rem;
+}
+.profile-information-container {
+  width: 50%;
+}
+.avatar-container img {
+  width: 25%;
+  border-radius: 50%;
+}
 /*
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
@@ -540,7 +618,7 @@ ul {
   .task-info-viewer-container {
     height: calc(30% - 6px);
     border-top: 1px solid rgba(175, 175, 175, 0.644);
-    padding: 12px;
+    padding: 5px;
   }
   .task-info-viewer {
     height: 100%;
@@ -557,13 +635,38 @@ ul {
     flex-direction: row;
     justify-content: space-between;
   }
-
+  .settings-container {
+    box-shadow: unset;
+    border-radius: unset;
+  }
+  .settings-form {
+    padding: 1rem 0rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .account-settings {
+    width: 100%;
+  }
+  .account-settings .form-group {
+    flex-direction: column;
+  }
+  .filter-settings {
+    border: unset;
+    width: 100%;
+    margin: 0;
+  }
   .day-info {
     width: unset;
     height: unset;
   }
   .calendar-container {
     padding-top: 5px;
+  }
+  .account-form {
+    padding: 0.75rem;
+  }
+  .account-form input {
+    margin: 5px 0;
   }
   .desktop-name-viewer {
     display: none;
@@ -573,7 +676,7 @@ ul {
     top: 0;
     right: 0;
     z-index: 99;
-    position: fixed;
+    position: absolute;
     visibility: visible;
   }
   .menu-overlay ul {

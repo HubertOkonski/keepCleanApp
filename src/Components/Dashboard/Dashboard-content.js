@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import Calendar from "./Calendar/Calendar";
 import DateSetter from "./Calendar/DateSetter";
 import MonthNames from "./Calendar/MonthNames";
-import Dashboard from "./Dashboard";
-import calendar from "./../../Icons/calendar.svg";
 import CalendarHeader from "./Calendar/CalendarHeader";
+import Settings from "./Settings/Settings";
 function DashboardContent(props) {
   const firstDayNumberNormalizer = (number) => {
     number == 0 ? (number = 7) : (number = number);
@@ -25,18 +24,29 @@ function DashboardContent(props) {
   };
   const [date, setDate] = useState(defaultDate);
   return (
-    <div className="dashboard-rightside">
-      <h1 className="choosed-section">{props.section}</h1>
-      <div className="calendarPanel-container">
-        <DateSetter
-          setDate={setDate}
-          date={date}
-          normalize={firstDayNumberNormalizer}
-        />
-        <CalendarHeader />
-        <Calendar date={date} />
-      </div>
-    </div>
+    <>
+      {props.section === "Calendar" ? (
+        <div className="dashboard-rightside">
+          <div className="logo-container">Keep It Clean</div>
+          <h1 className="choosed-section">{props.section}</h1>
+          <div className="calendarPanel-container">
+            <DateSetter
+              setDate={setDate}
+              date={date}
+              normalize={firstDayNumberNormalizer}
+            />
+            <CalendarHeader />
+            <Calendar date={date} />
+          </div>
+        </div>
+      ) : (
+        <div className="dashboard-rightside">
+          <div className="logo-container">Keep It Clean</div>
+          <h1 className="choosed-section">{props.section}</h1>
+          <Settings />
+        </div>
+      )}
+    </>
   );
 }
 

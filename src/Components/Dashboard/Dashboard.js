@@ -3,9 +3,8 @@ import DashboardContent from "./Dashboard-content";
 import DashboardMenu from "./Dashboard-menu";
 import HamburgerMenu from "react-hamburger-menu";
 import Help from "./Help";
-import Background from "../LoginPanel/Background";
 function Dashboard(props) {
-  const [section, setSection] = useState("Calendar");
+  const [section, setSection] = useState("Settings");
   const [helpView, setHelpView] = useState(false);
   const [menuStatus, setMenuStatus] = useState(false);
   const handleMenuClick = () => {
@@ -18,9 +17,11 @@ function Dashboard(props) {
   const handleHelpClick = () => {
     setHelpView(true);
   };
-  const handleCalendarClick = () => {};
+  const handleCalendarClick = () => {
+    if (section !== "Calendar") setSection("Calendar");
+  };
   const handleSettingsClick = () => {
-    props.setSection("Settings");
+    setSection("Settings");
   };
   return (
     <div
@@ -47,10 +48,10 @@ function Dashboard(props) {
       {menuStatus ? (
         <div className="menu-overlay">
           <ul>
-            <li>Calendar</li>
-            <li>Settings</li>
-            <li>Help</li>
-            <li>Logout</li>
+            <li onClick={handleCalendarClick}>Calendar</li>
+            <li onClick={handleSettingsClick}>Settings</li>
+            <li onClick={handleHelpClick}>Help</li>
+            <li onClick={handleLogoutClick}>Logout</li>
           </ul>
         </div>
       ) : null}
