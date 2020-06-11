@@ -17,7 +17,7 @@ html {
   width: 100vw;
   height: 100%;
   opacity: 0;
-  min-height: 720px;
+  min-height: 550px;
 }
 .active-transition {
   opacity: 1;
@@ -60,13 +60,14 @@ html {
 .logo-container {
   position: absolute;
   top: 1rem;
-  font-size: 1.5rem;
-  left: 0;
+  font-size: 1.75rem;
+  right: 3rem;
   display: block;
   text-align: center;
   font-family: "Kaushan Script", cursive;
   align-items: center;
   color: #122775cf;
+  -webkit-user-select: none;
   user-select: none;
 }
 .login-logo {
@@ -245,7 +246,7 @@ ul {
 }
 .dashboard-rightside {
   width: calc(100% - 6rem);
-  padding: 2rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
 }
@@ -272,7 +273,7 @@ ul {
   font-weight: 400;
   color: rgb(117, 119, 119);
   text-align: right;
-  padding: 17.5px;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
 }
@@ -362,7 +363,7 @@ ul {
 .day-bg-container {
   width: 100%;
   height: 100%;
-  padding: 0.66rem;
+  padding: 0.4rem;
 }
 .day-bg {
   position: relative;
