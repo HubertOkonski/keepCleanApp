@@ -673,7 +673,6 @@ button {
     padding: 1.25rem 0;
   }
   .task-info-viewer {
-    height: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -686,6 +685,7 @@ button {
   }
   .task-info-buttons {
     width: 100%;
+    margin: 10px 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

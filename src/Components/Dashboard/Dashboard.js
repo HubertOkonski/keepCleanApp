@@ -19,9 +19,11 @@ function Dashboard(props) {
   };
   const handleCalendarClick = () => {
     if (section !== "Calendar") setSection("Calendar");
+    setMenuStatus(false);
   };
   const handleSettingsClick = () => {
     setSection("Settings");
+    setMenuStatus(false);
   };
   return (
     <div
