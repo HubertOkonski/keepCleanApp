@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import FireBaseAuth from "./../../LoginPanel/FireBaseAuth";
+import * as firebase from "firebase/app";
 import {
   Form,
   FormControl,
@@ -6,10 +8,15 @@ import {
   Spinner,
   Button,
 } from "react-bootstrap";
-function AccountSettings() {
+function AccountSettings(props) {
+  const { user, setUser } = props;
   const [email, setEmail] = useState({
     email: "",
     repeatedEmail: "",
+  });
+  const [password, setPassword] = useState({
+    password: "",
+    repeatedPassword: "",
   });
 
   const handleEmailChange = (e, property) => {
@@ -19,12 +26,37 @@ function AccountSettings() {
       [property]: text,
     }));
   };
-
-  const sendChangeRequest = () => {};
+  const handlePasswordChange = (e, property) => {
+    let text = e.target.value;
+    setPassword((prevState) => ({
+      ...prevState,
+      [property]: text,
+    }));
+  };
+  const sendChangeRequest = (type) => {
+    if (type == "email")
+      user
+        .updateEmail(email.repeatedEmail)
+        .then(function () {
+          console.log("email changed");
+        })
+        .catch(function (error) {
+          // An error happened.
+        });
+    else
+      user
+        .updatePassword(password.repeatedPassword)
+        .then(function () {
+          console.log("passsword changed");
+        })
+        .catch(function (error) {
+          // An error happened.
+        });
+  };
   const showRejectInformation = () => {};
 
-  const validitionCheck = () => {
-    if (email.email == email.repeatedEmail) sendChangeRequest();
+  const validitionCheck = (input, repeatedInput, type) => {
+    if (input == repeatedInput) sendChangeRequest(type);
     else showRejectInformation();
   };
 
@@ -47,7 +79,13 @@ function AccountSettings() {
               value={email.repeatedEmail}
               onChange={(e) => handleEmailChange(e, "repeatedEmail")}
             />
-            <Button variant="primary" type="submit" onClick={validitionCheck}>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() =>
+                validitionCheck(email.email, email.repeatedEmail, "email")
+              }
+            >
               Change
             </Button>{" "}
           </Form.Group>
@@ -56,18 +94,28 @@ function AccountSettings() {
           <Form.Group controlId="formBasicEmail" className="password-change ">
             <Form.Label>Change your password</Form.Label>
             <Form.Control
-              type="email"
+              type="password"
               placeholder="Enter new password"
-              value={email.email}
-              onChange={(e) => handleEmailChange(e, "email")}
+              value={password.password}
+              onChange={(e) => handlePasswordChange(e, "password")}
             />
             <Form.Control
-              type="email"
+              type="password"
               placeholder="Re-enter new password"
-              value={email.repeatedEmail}
-              onChange={(e) => handleEmailChange(e, "repeatedEmail")}
+              value={password.repeatedPassword}
+              onChange={(e) => handlePasswordChange(e, "repeatedPassword")}
             />
-            <Button variant="primary" type="submit" onClick={validitionCheck}>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() =>
+                validitionCheck(
+                  password.password,
+                  password.repeatedPassword,
+                  "password"
+                )
+              }
+            >
               Change
             </Button>{" "}
           </Form.Group>

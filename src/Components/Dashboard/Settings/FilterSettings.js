@@ -18,15 +18,6 @@ function FilterSettings() {
     showOnlyCleaned: false,
     ShowOnlyNotCleaned: false,
   });
-  setTimeout(() => {
-    var user = firebase.auth().currentUser;
-    if (user) {
-      console.log(user.email);
-    } else {
-      console.log("not ello");
-    }
-  }, 2000);
-
   const handleChange = (property) => {
     if (property === "showAllDays")
       setfilterSettings((prevState) => ({

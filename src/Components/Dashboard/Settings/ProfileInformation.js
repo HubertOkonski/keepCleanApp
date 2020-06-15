@@ -1,22 +1,12 @@
 import React, { useState } from "react";
-import FireBaseAuth from "./../../LoginPanel/FireBaseAuth";
-import * as firebase from "firebase/app";
 import { ReactComponent as User } from "./../../../Icons/user.svg";
-function ProfileInformation() {
-  console.log(User);
-  const [user, setUser] = useState({});
-  FireBaseAuth();
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      setUser(user);
-    } else {
-      // No user is signed in.
-    }
-  });
+function ProfileInformation(props) {
+  const { user, setUser } = props;
   return (
     <div className="profile-information-container">
+      <h4>Profile Information</h4>
       <div className="avatar-container">
-        {user.photoURL !== "" ? (
+        {user.photoURL !== null ? (
           <img src={user.photoURL} alt="" srcset="" />
         ) : (
           <User />
@@ -26,7 +16,7 @@ function ProfileInformation() {
         <p>
           <strong>{user.displayName}</strong>
         </p>
-        <p>{user.email}</p>
+        <p>email: {user.email}</p>
       </div>
     </div>
   );
