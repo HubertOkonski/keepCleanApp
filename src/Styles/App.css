@@ -659,6 +659,10 @@ button {
     height: unset;
     padding: 10px;
   }
+  .settings-form > * {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #d4d4d4;
+  }
   .profile-information-container {
     width: 100%;
   }

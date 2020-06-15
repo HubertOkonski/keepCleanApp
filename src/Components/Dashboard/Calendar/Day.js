@@ -37,8 +37,9 @@ function Day(props) {
           style={
             props.status
               ? {
-                  backgroundImage:
-                    "repeating-linear-gradient(45deg, rgba(255, 255, 255, 0), rgba(188, 192, 228, 0.35), rgba(155, 153, 179, 0.23) 12.5%)",
+                  backgroundImage: `repeating-linear-gradient(45deg, rgba(255, 255, 255, 0), rgba(188, 192, 228, 0.35), rgba(155, 153, 179, 0.23) ${
+                    isMobile ? "33.33%" : "12.5%"
+                  })`,
                 }
               : {}
           }
