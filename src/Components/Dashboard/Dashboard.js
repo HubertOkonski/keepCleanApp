@@ -4,7 +4,7 @@ import DashboardMenu from "./Dashboard-menu";
 import HamburgerMenu from "react-hamburger-menu";
 import Help from "./Help";
 function Dashboard(props) {
-  const [section, setSection] = useState("Settings");
+  const [section, setSection] = useState("Calendar");
   const [helpView, setHelpView] = useState(false);
   const [menuStatus, setMenuStatus] = useState(false);
   const handleMenuClick = () => {

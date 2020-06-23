@@ -5,6 +5,22 @@ import MonthNames from "./Calendar/MonthNames";
 import CalendarHeader from "./Calendar/CalendarHeader";
 import Settings from "./Settings/Settings";
 function DashboardContent(props) {
+  const fillFilter = () => {
+    const defaultSettings = {
+      showAllDays: true,
+      showOnlyMine: false,
+      showEveryoneExceptMe: false,
+      showOnlyCleaned: false,
+      showOnlyNotCleaned: false,
+    };
+    if (localStorage.getItem("filters") === null) {
+      localStorage.setItem("filters", JSON.stringify(defaultSettings));
+      return {
+        defaultSettings,
+      };
+    } else return JSON.parse(localStorage.getItem("filters"));
+  };
+  const [filters, setFilters] = useState(fillFilter);
   const firstDayNumberNormalizer = (number) => {
     number == 0 ? (number = 7) : (number = number);
     return number;
@@ -36,14 +52,14 @@ function DashboardContent(props) {
               normalize={firstDayNumberNormalizer}
             />
             <CalendarHeader />
-            <Calendar date={date} />
+            <Calendar date={date} filters={filters} />
           </div>
         </div>
       ) : (
         <div className="dashboard-rightside">
           <div className="logo-container">Keep It Clean</div>
           <h1 className="choosed-section">{props.section}</h1>
-          <Settings />
+          <Settings filter={filters} setFilters={setFilters} />
         </div>
       )}
     </>

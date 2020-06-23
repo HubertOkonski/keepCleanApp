@@ -4,7 +4,8 @@ import FireBaseAuth from "./../../LoginPanel/FireBaseAuth";
 import * as firebase from "firebase/app";
 import FilterSettings from "./FilterSettings";
 import ProfileInformation from "./ProfileInformation";
-function Settings() {
+function Settings(props) {
+  const { filters, setFilters } = props;
   const [user, setUser] = useState({});
   FireBaseAuth();
   firebase.auth().onAuthStateChanged(function (user) {
@@ -24,7 +25,11 @@ function Settings() {
             <>
               <ProfileInformation setUser={setUser} user={user} />
               <AccountSettings setUser={setUser} user={user} />
-              <FilterSettings />{" "}
+              <FilterSettings
+                filters={filters}
+                setFilters={setFilters}
+                user={user}
+              />{" "}
             </>
           )}
         </div>

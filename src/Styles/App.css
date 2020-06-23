@@ -521,7 +521,7 @@ ul {
   display: flex;
 }
 .setting {
-  margin: 0.75rem 0px;
+  margin: 0.5rem 0px;
   padding: 0.5rem;
   display: flex;
   align-items: center;
@@ -588,6 +588,7 @@ button {
   width: 6rem;
   margin: auto;
   padding: 0;
+  border: none !important;
 }
 .avatar-container svg {
   width: 100px;
@@ -646,6 +647,7 @@ button {
   }
   .logo-container {
     position: static;
+    margin-bottom: 25px;
   }
   .task-info-viewer-container {
     height: calc(30% - 6px);

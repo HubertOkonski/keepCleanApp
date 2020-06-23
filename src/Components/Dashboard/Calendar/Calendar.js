@@ -3,6 +3,7 @@ import Day from "./Day";
 import MonthNames from "./MonthNames";
 import { Button } from "react-bootstrap";
 function Calendar(props) {
+  const { filters, setFilters } = props;
   const { year, monthNumber, firstDayNumber } = props.date;
   const [taskInfo, setTaskInfo] = useState({
     name: "",
@@ -49,11 +50,73 @@ function Calendar(props) {
     return monthsArray;
   };
 
+  const filterObj = {
+    showAllDays: function (day) {
+      return true;
+    },
+    showOnlyMine: function (day) {
+      if (day.name === "Hubert Okoński") return true;
+      else return false;
+    },
+    showEveryoneExceptMe: function (day) {
+      if (day.name !== "Hubert Okoński") return true;
+      else return false;
+    },
+    showOnlyCleaned: function (day) {
+      if (day.done) return true;
+      else return false;
+    },
+    showOnlyNotCleaned: function (day) {
+      if (!day.done) return true;
+      else return false;
+    },
+  };
+
+  const filterChooser = (filterNumber, secondFilterNumber) => {
+    let arrayOfPersonFilters = [];
+    Object.entries(filters).forEach((value, index) => {
+      if (
+        value[1] === true &&
+        (index == filterNumber || index == secondFilterNumber)
+      )
+        arrayOfPersonFilters.push(value[0]);
+    });
+    return arrayOfPersonFilters;
+  };
+
+  const personFilter = (arrayOfPersonFilters, day) => {
+    let status = false;
+    arrayOfPersonFilters.forEach((filter) => {
+      if (!status) status = filterObj[filter](day);
+    });
+    if (status == true) return day;
+    else return null;
+  };
+  const dayCleanlinessFilter = (arrayOfDaysFilters, day) => {
+    let status = false;
+    arrayOfDaysFilters.forEach((filter) => {
+      if (!status) status = filterObj[filter](day);
+    });
+    if (status == true) return day;
+    else return null;
+  };
+  const filterDays = (day) => {
+    if (!filters.showAllDays) {
+      let arrayOfPersonFilters = [...filterChooser(1, 2)];
+      let arrayOfDaysFilters = [...filterChooser(3, 4)];
+      day = personFilter(arrayOfPersonFilters, day);
+      if (day != null) day = dayCleanlinessFilter(arrayOfDaysFilters, day);
+    }
+    return day;
+  };
+
   const [CalendarData, setCalendarData] = useState(fillDataArray());
 
   const fillCalendarWithData = (dataArray) => {
     const copyOfCalendarData = [...CalendarData];
-    dataArray.dates.forEach((task) => {
+    let filtredDataArray = dataArray.dates.filter(filterDays);
+    console.log(filtredDataArray);
+    filtredDataArray.forEach((task) => {
       copyOfCalendarData[task.month - 1].days[task.day - 1] = {
         dayNumber: task.day,
         done: task.done,
