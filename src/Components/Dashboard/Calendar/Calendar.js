@@ -114,8 +114,7 @@ function Calendar(props) {
 
   const fillCalendarWithData = (dataArray) => {
     const copyOfCalendarData = [...CalendarData];
-    let filtredDataArray = dataArray.dates.filter(filterDays);
-    console.log(filtredDataArray);
+    let filtredDataArray = dataArray.filter(filterDays);
     filtredDataArray.forEach((task) => {
       copyOfCalendarData[task.month - 1].days[task.day - 1] = {
         dayNumber: task.day,
