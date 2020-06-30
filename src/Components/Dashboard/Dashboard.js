@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DashboardContent from "./Dashboard-content";
 import DashboardMenu from "./Dashboard-menu";
 import HamburgerMenu from "react-hamburger-menu";

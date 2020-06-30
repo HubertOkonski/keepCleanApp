@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import FireBaseConfig from "./FireBaseConfig";
 import * as firebase from "firebase/app";
 import "firebase/auth";
@@ -35,10 +35,9 @@ function FireBaseAuth(props) {
         return firebase.auth().signInWithRedirect(provider);
       })
       .catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        console.log(error);
       });
+
     localStorage.setItem("authorized", true);
     props.authorize(JSON.parse(localStorage.getItem("authorized")));
   };

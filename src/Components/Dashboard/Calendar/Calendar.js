@@ -3,7 +3,7 @@ import Day from "./Day";
 import MonthNames from "./MonthNames";
 import { Button } from "react-bootstrap";
 function Calendar(props) {
-  const { filters, setFilters } = props;
+  const { filters } = props;
   const { year, monthNumber, firstDayNumber } = props.date;
   const [taskInfo, setTaskInfo] = useState({
     name: "",
@@ -77,7 +77,7 @@ function Calendar(props) {
     Object.entries(filters).forEach((value, index) => {
       if (
         value[1] === true &&
-        (index == filterNumber || index == secondFilterNumber)
+        (index === filterNumber || index === secondFilterNumber)
       )
         arrayOfPersonFilters.push(value[0]);
     });
@@ -89,7 +89,7 @@ function Calendar(props) {
     arrayOfPersonFilters.forEach((filter) => {
       if (!status) status = filterObj[filter](day);
     });
-    if (status == true) return day;
+    if (status === true) return day;
     else return null;
   };
   const dayCleanlinessFilter = (arrayOfDaysFilters, day) => {
@@ -97,7 +97,7 @@ function Calendar(props) {
     arrayOfDaysFilters.forEach((filter) => {
       if (!status) status = filterObj[filter](day);
     });
-    if (status == true) return day;
+    if (status === true) return day;
     else return null;
   };
   const filterDays = (day) => {
@@ -138,11 +138,11 @@ function Calendar(props) {
         (result) => fillCalendarWithData(result),
         (result) => failUserFetch()
       );
-  }, [0]);
+  }, []);
   const getDaysOfPrevMonth = () => {
     const array = [];
     const numOfDaysOfPrevMonth = getDaysInMonth(monthNumber, year);
-    if (monthNumber != 0)
+    if (monthNumber !== 0)
       for (let i = 0; i < firstDayNumber - 1; i++)
         array.push(
           CalendarData[monthNumber - 1].days[
@@ -162,7 +162,7 @@ function Calendar(props) {
     const array = [];
     const numOfDaysOfNextMonth =
       42 - (firstDayNumber - 1) - getDaysInMonth(monthNumber + 1, year);
-    if (monthNumber != 11)
+    if (monthNumber !== 11)
       for (let i = 0; i < numOfDaysOfNextMonth; i++)
         array.push(CalendarData[monthNumber + 1].days[i]);
     return array;

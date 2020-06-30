@@ -9,10 +9,6 @@ function App() {
   const [authenticated, authorize] = useState(
     JSON.parse(localStorage.getItem("authorized"))
   );
-  const [user, fillUserData] = useState({
-    name: "",
-    email: "",
-  });
   return (
     <>
       <div className="App ">
@@ -22,7 +18,7 @@ function App() {
         ) : (
           <>
             <LoginLogo />
-            <Home authorize={authorize} fillUserData={fillUserData} />
+            <Home authorize={authorize} />
           </>
         )}
       </div>

@@ -5,7 +5,7 @@ import { ReactComponent as Linkedin } from "./../../Icons/linkedin.svg";
 import { ReactComponent as Facebook } from "./../../Icons/facebook.svg";
 import { ReactComponent as Github } from "./../../Icons/github.svg";
 function Home(props) {
-  const { authorize, fillUserData } = props;
+  const { authorize } = props;
   return (
     <div className="home-container container">
       <div className="logo"></div>
@@ -57,7 +57,7 @@ function Home(props) {
           </footer>
         </div>
         <div className="scroll-container">
-          <LoginPanel authorize={authorize} fillUserData={fillUserData} />
+          <LoginPanel authorize={authorize} />
           <RegisterPanel />
         </div>
       </div>

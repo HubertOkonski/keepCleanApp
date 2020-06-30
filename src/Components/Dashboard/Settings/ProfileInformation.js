@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { ReactComponent as User } from "./../../../Icons/user.svg";
 function ProfileInformation(props) {
-  const { user, setUser } = props;
+  const { user } = props;
   return (
     <div className="profile-information-container">
       <h4>Profile Information</h4>

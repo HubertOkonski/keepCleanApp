@@ -70,9 +70,7 @@ function LoginPanel(props) {
         })
         .then(successCallback, failureCallback)
         .catch(function (error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
+          console.log(error);
         });
     }
   };

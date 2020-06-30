@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Modal,
-  ModalTitle,
-  ModalFooter,
-  ModalBody,
-} from "react-bootstrap";
+import React from "react";
+import { Button, Modal } from "react-bootstrap";
 function Help(props) {
   const handleClose = () => props.setHelpView(false);
   return (

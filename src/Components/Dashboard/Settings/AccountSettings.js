@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import FireBaseAuth from "./../../LoginPanel/FireBaseAuth";
-import * as firebase from "firebase/app";
-import {
-  Form,
-  FormControl,
-  InputGroup,
-  Spinner,
-  Button,
-} from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 function AccountSettings(props) {
-  const { user, setUser } = props;
+  const { user } = props;
   const [email, setEmail] = useState({
     email: "",
     repeatedEmail: "",
@@ -34,7 +26,7 @@ function AccountSettings(props) {
     }));
   };
   const sendChangeRequest = (type) => {
-    if (type == "email")
+    if (type === "email")
       user
         .updateEmail(email.repeatedEmail)
         .then(function () {
@@ -56,7 +48,7 @@ function AccountSettings(props) {
   const showRejectInformation = () => {};
 
   const validitionCheck = (input, repeatedInput, type) => {
-    if (input == repeatedInput) sendChangeRequest(type);
+    if (input === repeatedInput) sendChangeRequest(type);
     else showRejectInformation();
   };
 

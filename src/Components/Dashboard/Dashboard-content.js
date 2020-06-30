@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Calendar from "./Calendar/Calendar";
 import DateSetter from "./Calendar/DateSetter";
 import MonthNames from "./Calendar/MonthNames";
@@ -22,7 +22,7 @@ function DashboardContent(props) {
   };
   const [filters, setFilters] = useState(fillFilter);
   const firstDayNumberNormalizer = (number) => {
-    number == 0 ? (number = 7) : (number = number);
+    if (number === 0) number = 7;
     return number;
   };
   const defaultDate = () => {

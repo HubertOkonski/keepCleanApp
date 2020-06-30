@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import { isMobile } from "react-device-detect";
+import { Button } from "react-bootstrap";
 function Day(props) {
+  const [postponeMenuStatus, setPostponeMenuStatus] = useState(false);
+  const closePostponeMenu = () => {
+    setPostponeMenuStatus(false);
+  };
+  const showPostponeMenu = () => {
+    setPostponeMenuStatus(true);
+  };
   const [menuSettings, setMenuSettings] = useState({
     visibility: "hidden",
     x: 0,
@@ -15,6 +23,7 @@ function Day(props) {
     if (isMobile)
       props.setTaskInfo({
         name: props.task,
+        done: props.done,
         dayNumber: props.dayNumber,
         editAvailability: editAvailability(),
       });
@@ -28,9 +37,23 @@ function Day(props) {
       });
     }
   };
-  const { day, index } = props;
   return (
     <div className="day-container">
+      {props.task !== " " ? (
+        <div
+          className="postpone-container"
+          style={postponeMenuStatus ? { visibility: "visible" } : {}}
+        >
+          <span class="close" onClick={closePostponeMenu}></span>
+          <div className="postpone">
+            <h2>Postpone Menu</h2>
+            <p>Choose a new cleaning day</p>
+            <input type="date" step="1" min="00:00:00" max="31.12.2020"></input>
+            <button>Confirm</button>
+          </div>
+        </div>
+      ) : null}
+
       <div className="day-bg-container">
         <div
           className="day-bg"
@@ -54,9 +77,43 @@ function Day(props) {
               }}
             >
               <ul>
-                <li>Cancel</li>
-                <li>Postpone</li>
-                <li>Informacje</li>
+                <li>
+                  <button
+                    disabled={!editAvailability()}
+                    style={
+                      !editAvailability()
+                        ? { color: "lightgrey", cursor: "default" }
+                        : {}
+                    }
+                  >
+                    Cancel
+                  </button>
+                </li>
+                <li>
+                  <button
+                    style={
+                      !editAvailability()
+                        ? { color: "lightgrey", cursor: "default" }
+                        : {}
+                    }
+                    disabled={!editAvailability()}
+                    onClick={showPostponeMenu}
+                  >
+                    Postpone
+                  </button>
+                </li>
+                <li>
+                  <button
+                    style={
+                      !editAvailability()
+                        ? { color: "lightgrey", cursor: "default" }
+                        : {}
+                    }
+                    disabled={!editAvailability()}
+                  >
+                    Cleaned{" "}
+                  </button>
+                </li>
               </ul>
             </div>
           ) : (
@@ -104,7 +161,12 @@ function Day(props) {
                 {props.dayNumber}
               </strong>
             </p>
-            <div className="desktop-name-viewer">{props.task}</div>
+            <div
+              className="desktop-name-viewer"
+              style={props.done ? { color: "#5bc368" } : { color: "#ff5959" }}
+            >
+              {props.task}
+            </div>
           </div>
         </div>
       </div>

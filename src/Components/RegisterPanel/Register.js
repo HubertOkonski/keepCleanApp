@@ -43,7 +43,7 @@ function Register() {
   const passwordConfirmationCheck = () => {
     if (
       messageColorChange(
-        registerForm.password == registerForm.passwordConfirmation
+        registerForm.password === registerForm.passwordConfirmation
       )
     )
       return true;

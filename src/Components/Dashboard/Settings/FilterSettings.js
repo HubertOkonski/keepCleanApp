@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import {
-  Form,
-  FormControl,
-  InputGroup,
-  Spinner,
-  Button,
-} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
-import * as firebase from "firebase/app";
 import FireBaseAuth from "./../../LoginPanel/FireBaseAuth";
 function FilterSettings(props) {
   FireBaseAuth();
