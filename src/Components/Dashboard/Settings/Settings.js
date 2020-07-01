@@ -20,7 +20,7 @@ function Settings(props) {
       <div className="settings">
         <div className="settings-form">
           {Object.keys(user).length === 0 ? (
-            <div class="lds-dual-ring"></div>
+            <div className="lds-dual-ring"></div>
           ) : (
             <>
               <ProfileInformation setUser={setUser} user={user} />

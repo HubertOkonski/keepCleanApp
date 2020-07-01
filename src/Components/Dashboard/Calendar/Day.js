@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import { isMobile } from "react-device-detect";
-import { Button } from "react-bootstrap";
 function Day(props) {
-  const [postponeMenuStatus, setPostponeMenuStatus] = useState(false);
-  const closePostponeMenu = () => {
-    setPostponeMenuStatus(false);
+  const getMonth = () => {
+    var date = new Date(props.timestamp);
+    return date.getMonth() + 1;
   };
-  const showPostponeMenu = () => {
-    setPostponeMenuStatus(true);
-  };
+  const {
+    getMinDate,
+    sendPostponeRequest,
+    handleDateChange,
+    sendCancelRequest,
+    postponeMenuStatus,
+    closePostponeMenu,
+    showPostponeMenu,
+  } = props;
   const [menuSettings, setMenuSettings] = useState({
     visibility: "hidden",
     x: 0,
@@ -24,6 +29,7 @@ function Day(props) {
       props.setTaskInfo({
         name: props.task,
         done: props.done,
+        monthNumber: getMonth(),
         dayNumber: props.dayNumber,
         editAvailability: editAvailability(),
       });
@@ -37,6 +43,7 @@ function Day(props) {
       });
     }
   };
+
   return (
     <div className="day-container">
       {props.task !== " " ? (
@@ -44,12 +51,17 @@ function Day(props) {
           className="postpone-container"
           style={postponeMenuStatus ? { visibility: "visible" } : {}}
         >
-          <span class="close" onClick={closePostponeMenu}></span>
+          <span className="close" onClick={closePostponeMenu}></span>
           <div className="postpone">
-            <h2>Postpone Menu</h2>
             <p>Choose a new cleaning day</p>
-            <input type="date" step="1" min="00:00:00" max="31.12.2020"></input>
-            <button>Confirm</button>
+            <input
+              type="date"
+              step="1"
+              min={getMinDate()}
+              max="2020-08-31"
+              onChange={(e) => handleDateChange(e)}
+            ></input>
+            <button onClick={sendPostponeRequest}>Confirm</button>
           </div>
         </div>
       ) : null}
@@ -80,6 +92,7 @@ function Day(props) {
                 <li>
                   <button
                     disabled={!editAvailability()}
+                    onClick={sendCancelRequest}
                     style={
                       !editAvailability()
                         ? { color: "lightgrey", cursor: "default" }

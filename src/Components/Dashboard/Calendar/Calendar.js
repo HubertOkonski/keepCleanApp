@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Day from "./Day";
 import MonthNames from "./MonthNames";
+import { isMobile } from "react-device-detect";
 import { Button } from "react-bootstrap";
 function Calendar(props) {
+  const [postponeDate, setpostponeDate] = useState("");
+  const [postponeMenuStatus, setPostponeMenuStatus] = useState(false);
+  const showPostponeMenu = () => {
+    setPostponeMenuStatus(true);
+  };
+
   const { filters } = props;
   const { year, monthNumber, firstDayNumber } = props.date;
   const [taskInfo, setTaskInfo] = useState({
@@ -175,11 +182,41 @@ function Calendar(props) {
     ];
     return calendarViewArray;
   };
+
+  const getDay = (day) => {
+    if (day <= 9) return 0 + "" + day;
+  };
+  const getMonth = (month) => {
+    if (month <= 9) return 0 + "" + month;
+  };
+  const getMinDate = () => {
+    const today = new Date();
+    return `${today.getFullYear()}-${getMonth(today.getMonth() + 1)}-${getDay(
+      today.getDate()
+    )}`;
+  };
+  const sendPostponeRequest = () => {
+    let data;
+    if (postponeDate !== "") data = postponeDate;
+    if (isMobile)
+      data = `2020-${getMonth(taskInfo.monthNumber)}-${getDay(
+        parseInt(taskInfo.dayNumber)
+      )}`;
+    console.log(data);
+  };
+  const handleDateChange = (e) => {
+    setpostponeDate(e.target.value);
+  };
+  const sendCancelRequest = () => {};
+  const closePostponeMenu = () => {
+    setPostponeMenuStatus(false);
+  };
   return (
     <div className="calendar-container">
       <div className="calendar">
-        {updateView().map((day) => (
+        {updateView().map((day, index) => (
           <Day
+            key={index}
             dayNumber={day.dayNumber}
             status={day.status}
             done={day.done}
@@ -190,6 +227,15 @@ function Calendar(props) {
             setMenuReset={setMenuReset}
             setTaskInfo={setTaskInfo}
             taskInfo={taskInfo}
+            getDay={getDay}
+            getMonth={getMonth}
+            getMinDate={getMinDate}
+            sendPostponeRequest={sendPostponeRequest}
+            handleDateChange={handleDateChange}
+            sendCancelRequest={sendCancelRequest}
+            postponeMenuStatus={postponeMenuStatus}
+            closePostponeMenu={closePostponeMenu}
+            showPostponeMenu={showPostponeMenu}
           />
         ))}
       </div>
@@ -201,7 +247,7 @@ function Calendar(props) {
                 <p>Who: {taskInfo.name}</p>
                 <p>
                   Status:
-                  {taskInfo.status ? (
+                  {taskInfo.done ? (
                     <span
                       style={{
                         color: "green",
@@ -221,8 +267,19 @@ function Calendar(props) {
               <Button variant="primary" disabled={!taskInfo.editAvailability}>
                 Cancel
               </Button>
-              <Button variant="primary" disabled={!taskInfo.editAvailability}>
+              <Button
+                onClick={showPostponeMenu}
+                variant="primary"
+                disabled={!taskInfo.editAvailability}
+              >
                 Postpone
+              </Button>
+              <Button
+                onClick={showPostponeMenu}
+                variant="primary"
+                disabled={!taskInfo.editAvailability}
+              >
+                Cleaned
               </Button>
             </div>
           </div>
