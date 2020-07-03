@@ -134,8 +134,7 @@ function Calendar(props) {
         status: task.status,
         task: task.name,
         today: copyOfCalendarData[task.month - 1].days[task.day - 1].today,
-        timestamp:
-          copyOfCalendarData[task.month - 1].days[task.day - 1].timestamp,
+        timestamp: task.timestamp,
       };
     });
     setCalendarData(copyOfCalendarData);
@@ -220,7 +219,7 @@ function Calendar(props) {
       headers: {
         token: returnToken(),
       },
-      body: JSON.stringify(cancelDate),
+      body: cancelDate,
     })
       .then((res) => res.json())
       .then(
@@ -237,7 +236,7 @@ function Calendar(props) {
       headers: {
         token: "" + returnToken(),
       },
-      body: JSON.stringify(cancelDate),
+      body: cancelDate,
     })
       .then((res) => res.json())
       .then(
