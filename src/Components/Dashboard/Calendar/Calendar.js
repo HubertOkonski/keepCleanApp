@@ -5,11 +5,16 @@ import { isMobile } from "react-device-detect";
 import { Button } from "react-bootstrap";
 function Calendar(props) {
   const [postponeDate, setpostponeDate] = useState("");
+  const [cancelDate, setcancelDate] = useState("");
   const [postponeMenuStatus, setPostponeMenuStatus] = useState(false);
   const showPostponeMenu = () => {
     setPostponeMenuStatus(true);
   };
-
+  const returnToken = () => {
+    var token = localStorage.getItem("user");
+    return token;
+  };
+  returnToken();
   const { filters } = props;
   const { year, monthNumber, firstDayNumber } = props.date;
   const [taskInfo, setTaskInfo] = useState({
@@ -135,15 +140,15 @@ function Calendar(props) {
     });
     setCalendarData(copyOfCalendarData);
   };
-  const failUserFetch = () => {
-    console.log("fetch failed");
+  const failUserFetch = (result) => {
+    console.log(result);
   };
   useEffect(() => {
     fetch("https://us-central1-keepclean-f285d.cloudfunctions.net/days")
       .then((res) => res.json())
       .then(
         (result) => fillCalendarWithData(result),
-        (result) => failUserFetch()
+        (result) => failUserFetch(result)
       );
   }, []);
   const getDaysOfPrevMonth = () => {
@@ -185,9 +190,11 @@ function Calendar(props) {
 
   const getDay = (day) => {
     if (day <= 9) return 0 + "" + day;
+    else return "" + day;
   };
   const getMonth = (month) => {
     if (month <= 9) return 0 + "" + month;
+    else return "" + month;
   };
   const getMinDate = () => {
     const today = new Date();
@@ -207,9 +214,36 @@ function Calendar(props) {
   const handleDateChange = (e) => {
     setpostponeDate(e.target.value);
   };
-  const sendCancelRequest = () => {};
+  const sendCancelRequest = () => {
+    fetch("http://localhost:5001/keepclean-f285d/us-central1/cancel", {
+      method: "POST",
+      headers: {
+        token: returnToken(),
+      },
+      body: JSON.stringify(cancelDate),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => console.log(result),
+        (result) => console.log(result)
+      );
+  };
   const closePostponeMenu = () => {
     setPostponeMenuStatus(false);
+  };
+  const sendCleanedRequest = () => {
+    fetch("http://localhost:5001/keepclean-f285d/us-central1/cleaned", {
+      method: "POST",
+      headers: {
+        token: "" + returnToken(),
+      },
+      body: JSON.stringify(cancelDate),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => console.log(result),
+        (result) => console.log(result)
+      );
   };
   return (
     <div className="calendar-container">
@@ -236,6 +270,9 @@ function Calendar(props) {
             postponeMenuStatus={postponeMenuStatus}
             closePostponeMenu={closePostponeMenu}
             showPostponeMenu={showPostponeMenu}
+            setpostponeDate={setpostponeDate}
+            setcancelDate={setcancelDate}
+            sendCleanedRequest={sendCleanedRequest}
           />
         ))}
       </div>
@@ -264,7 +301,11 @@ function Calendar(props) {
             </div>
 
             <div className="task-info-buttons">
-              <Button variant="primary" disabled={!taskInfo.editAvailability}>
+              <Button
+                variant="primary"
+                onClick={sendCancelRequest}
+                disabled={!taskInfo.editAvailability}
+              >
                 Cancel
               </Button>
               <Button
@@ -275,7 +316,7 @@ function Calendar(props) {
                 Postpone
               </Button>
               <Button
-                onClick={showPostponeMenu}
+                onClick={sendCleanedRequest}
                 variant="primary"
                 disabled={!taskInfo.editAvailability}
               >

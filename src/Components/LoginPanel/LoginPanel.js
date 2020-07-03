@@ -11,7 +11,11 @@ function LoginPanel(props) {
   });
   const [loadingStatus, setLoadingStatus] = useState(false);
   const [loginInfo, setloginInfo] = useState("");
-  const successCallback = () => {
+  const addUserInfoToLocalstorage = (info) => {
+    localStorage.setItem("user", info.user.uid);
+  };
+  const successCallback = (info) => {
+    addUserInfoToLocalstorage(info);
     console.log("success");
     setTimeout(() => {
       localStorage.setItem("authorized", true);
@@ -61,14 +65,9 @@ function LoginPanel(props) {
         .auth()
         .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(function () {
-          // Existing and future Auth states are now persisted in the current
-          // session only. Closing the window would clear any existing state even
-          // if a user forgets to sign out.
-          // ...
-          // New sign-in will be persisted with session persistence.
           return firebase.auth().signInWithEmailAndPassword(email, password);
         })
-        .then(successCallback, failureCallback)
+        .then((success) => successCallback(success), failureCallback)
         .catch(function (error) {
           console.log(error);
         });
@@ -131,7 +130,10 @@ function LoginPanel(props) {
               {" "}
               <center>or</center>{" "}
             </span>
-            <FireBaseAuth authorize={props.authorize} />
+            <FireBaseAuth
+              authorize={props.authorize}
+              addUserInfoToLocalstorage={addUserInfoToLocalstorage}
+            />
           </FormGroup>
         </Form>
         <footer>

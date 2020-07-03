@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import { isMobile } from "react-device-detect";
 function Day(props) {
-  const getMonth = () => {
-    var date = new Date(props.timestamp);
-    return date.getMonth() + 1;
-  };
   const {
     getMinDate,
     sendPostponeRequest,
@@ -14,6 +10,10 @@ function Day(props) {
     postponeMenuStatus,
     closePostponeMenu,
     showPostponeMenu,
+    setpostponeDate,
+    setcancelDate,
+    sendCleanedRequest,
+    getMonth,
   } = props;
   const [menuSettings, setMenuSettings] = useState({
     visibility: "hidden",
@@ -25,6 +25,7 @@ function Day(props) {
     return props.timestamp > todayTimestamp;
   };
   const menuHandler = (e) => {
+    setcancelDate(props.timestamp);
     if (isMobile)
       props.setTaskInfo({
         name: props.task,
@@ -117,6 +118,7 @@ function Day(props) {
                 </li>
                 <li>
                   <button
+                    onClick={sendCleanedRequest}
                     style={
                       !editAvailability()
                         ? { color: "lightgrey", cursor: "default" }

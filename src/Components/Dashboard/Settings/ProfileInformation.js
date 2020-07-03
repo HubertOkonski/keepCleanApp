@@ -7,7 +7,7 @@ function ProfileInformation(props) {
       <h4>Profile Information</h4>
       <div className="avatar-container">
         {user.photoURL !== null ? (
-          <img src={user.photoURL} alt="" srcset="" />
+          <img src={user.photoURL} alt="" srcSet="" />
         ) : (
           <User />
         )}

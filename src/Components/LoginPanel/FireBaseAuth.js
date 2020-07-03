@@ -19,25 +19,11 @@ function FireBaseAuth(props) {
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
-      signInSuccess: (provider) => changeLogInStatus(provider),
+      signInSuccessWithAuthResult: (provider) => changeLogInStatus(provider),
     },
   };
   const changeLogInStatus = (provider) => {
-    firebase
-      .auth()
-      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      .then(function () {
-        // Existing and future Auth states are now persisted in the current
-        // session only. Closing the window would clear any existing state even
-        // if a user forgets to sign out.
-        // ...
-        // New sign-in will be persisted with session persistence.
-        return firebase.auth().signInWithRedirect(provider);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+    props.addUserInfoToLocalstorage(provider);
     localStorage.setItem("authorized", true);
     props.authorize(JSON.parse(localStorage.getItem("authorized")));
   };
