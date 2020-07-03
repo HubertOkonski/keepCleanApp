@@ -215,7 +215,7 @@ function Calendar(props) {
     setpostponeDate(e.target.value);
   };
   const sendCancelRequest = () => {
-    fetch("http://localhost:5001/keepclean-f285d/us-central1/cancel", {
+    fetch("https://us-central1-keepclean-f285d.cloudfunctions.net/cancel", {
       method: "POST",
       headers: {
         token: returnToken(),
@@ -232,7 +232,7 @@ function Calendar(props) {
     setPostponeMenuStatus(false);
   };
   const sendCleanedRequest = () => {
-    fetch("http://localhost:5001/keepclean-f285d/us-central1/cleaned", {
+    fetch("https://us-central1-keepclean-f285d.cloudfunctions.net/cleaned", {
       method: "POST",
       headers: {
         token: "" + returnToken(),
