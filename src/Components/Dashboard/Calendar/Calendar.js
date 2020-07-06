@@ -201,14 +201,14 @@ function Calendar(props) {
       today.getDate()
     )}`;
   };
-  const sendPostponeRequest = () => {
+  const setPostponeData = () => {
     let data;
     if (postponeDate !== "") data = postponeDate;
     if (isMobile)
       data = `2020-${getMonth(taskInfo.monthNumber)}-${getDay(
         parseInt(taskInfo.dayNumber)
       )}`;
-    console.log(data);
+    sendPostponeRequest();
   };
   const handleDateChange = (e) => {
     setpostponeDate(e.target.value);
@@ -244,6 +244,25 @@ function Calendar(props) {
         (result) => console.log(result)
       );
   };
+  const sendPostponeRequest = () => {
+    setPostponeMenuStatus(false);
+    fetch("https://us-central1-keepclean-f285d.cloudfunctions.net/postpone", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        token: "" + returnToken(),
+      },
+      body: JSON.stringify({
+        cancelDate: cancelDate,
+        newDate: postponeDate,
+      }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => window.location.reload(false),
+        (result) => window.location.reload(false)
+      );
+  };
   return (
     <div className="calendar-container">
       <div className="calendar">
@@ -263,7 +282,7 @@ function Calendar(props) {
             getDay={getDay}
             getMonth={getMonth}
             getMinDate={getMinDate}
-            sendPostponeRequest={sendPostponeRequest}
+            sendPostponeRequest={setPostponeData}
             handleDateChange={handleDateChange}
             sendCancelRequest={sendCancelRequest}
             postponeMenuStatus={postponeMenuStatus}
